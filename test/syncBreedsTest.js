@@ -8,5 +8,15 @@ describe('#breedDetails', () => {
     assert.equal(expectedDesc, bombay);
   });
 
-  it 
+  it('returns breed dtails for the Balinese breed', () => {
+    const expectedDesc = "Balinese are curious, outgoing, intelligent cats with excellent communication skills. They are known for their chatty personalities and are always eager to tell you their views on life, love, and what you’ve served them for dinner.";
+    const balinese = breedDetails('Balinese');
+    assert.equal(expectedDesc, balinese);
+  });
+
+  it('returns undefined when there is no description for the breed name provided', () => {
+    const expectedDesc = undefined;
+    const persian = breedDetails('Persian');
+    assert.equal(expectedDesc, persian);
+  });
 });
