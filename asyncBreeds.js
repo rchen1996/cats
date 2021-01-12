@@ -5,16 +5,22 @@ const breedDetailsFromFile = function(breed, functionToRunWhenThingsAreDone) {
   fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
     console.log("In readFile's Callback: it has the data.");
     // ISSUE: Returning from inner callback function, not breedDetailsFromFile
-    if (!error) functionToRunWhenThingsAreDone(data);
+    if (!error) {
+      functionToRunWhenThingsAreDone(data);
+    } else {
+      functionToRunWhenThingsAreDone(undefined);
+    }
   });
   // ISSUE: Attempting to return data out here will also not work
   // Currently not returning anything from here - function returns undefined
 };
 
-// CHANGE 1: Moved the console.log into a new function:
-const printOutCatBreed = breed => {
-  console.log('Return Value: ', breed)// print out details correctly
-};
+// // CHANGE 1: Moved the console.log into a new function:
+// const printOutCatBreed = breed => {
+//   console.log('Return Value: ', breed)// print out details correctly
+// };
 
-//CHANGE 2: passing 2 arguments into breedDetailsFromFile: breed string and callback function
-const bombay = breedDetailsFromFile("Bombay", printOutCatBreed);
+// //CHANGE 2: passing 2 arguments into breedDetailsFromFile: breed string and callback function
+// const bombay = breedDetailsFromFile("Bombay", printOutCatBreed);
+
+module.exports = breedDetailsFromFile;
